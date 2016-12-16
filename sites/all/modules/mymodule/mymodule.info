@@ -1,0 +1,4 @@
+name = Module Ajax Display
+description = Renders Nodes by Ajax
+core = 7.x
+files[] = mymodule.module
