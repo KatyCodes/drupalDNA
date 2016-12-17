@@ -1,32 +1,88 @@
 <?php
 /**
  * @file
- * Functional tests for the simple dnapair module.
+ * Tests for dnapair Module.
  */
- class dnapairTests extends DrupalWebTestCase {
 
-     /**
-      * Controls info displayed about our test in the Drupal Testing UI
-      */
-     public static function getInfo() {
-         return array(
-             // Name your tests.
-             'name' => 'dnapair Tests',
-             // Describe the point of these tests.
-             'description' => 'Tests the dnapair module.',
-             // Assign these tests to a group, just like the "package" in the module's info page puts your modules into a group.
-             'group' => 'Epicodus Examples Tests',
-         );
-     }
- public function setUp() {
-         //enable modules we need by putting their machine readable names into an array.
-         parent::setUp(array('dnapair'));
-     }
+class DNAPairUnitTestCase extends DrupalUnitTestCase {
 
- public function testdnapairNavigation() {
-         // Navigate to the URL created by the dnapair module.
-         $this->drupalGet('hello_friend');
-         // Assert that the text we want to see is actually there on the page.
-         $this->assertText('Hello my dear friend!', 'The text on the page is correct.');
-     }
-  }
+    public static function getInfo() {
+        return array(
+            'name' => 'DNAPair Form Unit Tests',
+            'description' => 'Unit Tests for the DNA Module',
+            'group' => 'DNAPair Module',
+        );
+    }
+
+    public function setUp() {
+        parent::setUp(array('dnapair'));
+    }
+
+    function testDNA() {
+
+        // $valid_h = array('A', 'T', 'C', 'G');
+
+        //Describe
+        $description = 'Test T Returns A in `Helix`';
+        //Arrange
+        $input = 'T';
+        //Act
+        $result = make_h($input);
+        //Assert
+        $expected_output = 'A';
+        $this->assertEqual($result, $expected_output, $description);
+
+        //Describe
+        $description = 'Test G Returns C in Helix';
+        //Arrange
+        $input = 'G';
+        //Act
+        $result = make_h($input);
+        //Assert
+        $expected_output = 'C';
+        $this->assertEqual($result, $expected_output, $description);
+
+        //Describe
+        $description = 'Test TA Returns AT in Helix';
+        //Arrange
+        $input = 'TA';
+        //Act
+        $result = make_h($input);
+        //Assert
+        $expected_output = 'AT';
+        $this->assertEqual($result, $expected_output, $description);
+
+        //Describe
+        $description = 'Test ATCG Returns TAGC in Helix';
+        //Arrange
+        $input = 'ATCG';
+        //Act
+        $result = make_h($input);
+        //Assert
+        $expected_output = 'TAGC';
+        $this->assertEqual($result, $expected_output, $description);
+
+        //Describe
+        $description = 'Test TAGC Returns ATCG in Helix';
+        //Arrange
+        $input = 'ATCG';
+        //Act
+        $result = make_h($input);
+        //Assert
+        $expected_output = 'TAGC';
+        $this->assertEqual($result, $expected_output, $description);
+    }
+} // End DNATestCase
+
+class DNAPairFunctionalTestCase extends DrupalWebTestCase {
+
+    public static function getInfo() {
+        return array(
+            'name' => 'DNAPair Form Functional Tests',
+            'description' => 'Functional Tests for the DNAPair Module',
+            'group' => 'DNAPair Module',
+        );
+    }
+
+
+}
