@@ -1,0 +1,7 @@
+name = DNA Pair
+description = DNA Pair, gets the other half of the DNA
+package = DNA
+core = 7.x
+files[] = dnapair.module
+files[] = dnapair.test
+dependencies[] = simpletest
