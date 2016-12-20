@@ -27,7 +27,7 @@ function dnapair_form() {
 
     $form['submit'] = array(
         '#type' => 'submit',
-        '#value' => 'Submit',
+        '#value' => 'submit',
     );
     return $form;
 }

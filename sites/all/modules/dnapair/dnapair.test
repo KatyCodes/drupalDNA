@@ -84,5 +84,22 @@ class DNAPairFunctionalTestCase extends DrupalWebTestCase {
         );
     }
 
+    public function setUp() {
+        parent::setUp(array('dnapair'));
+    }
+
+    public function testDNAValid() {
+
+       $this->drupalGet('dnapair');
+
+       $this->assertText('Enter half of the helix to get the other', 'Form displayed!');
+
+       $form = array();
+       $form['half_h'] = 'T';
+       $this->drupalPost('dnapair', $form, t('submit'));
+
+       $this->assertText("Your DNA pair!", 'Output displayed!');
+
+   }
 
 }
